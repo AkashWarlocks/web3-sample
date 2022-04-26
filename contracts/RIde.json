@@ -1,0 +1,409 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "start_ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "new_fare_contract_address",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "rider",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			}
+		],
+		"name": "Ride_Requested",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "driver",
+				"type": "address"
+			}
+		],
+		"name": "acceptRide",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			}
+		],
+		"name": "cancelRide",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "boost_percent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			}
+		],
+		"name": "counterQuote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "initial_distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "initial_time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "boost_percent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address[]",
+				"name": "eligibleDrivers",
+				"type": "address[]"
+			}
+		],
+		"name": "createRideHash",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "final_fare",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cgst",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sgst",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "rider_referrer_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "driver_referrer_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "driver_earnings",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "base_fare_without_tax",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "premium_fare_without_tax",
+				"type": "uint256"
+			}
+		],
+		"name": "endRide",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_ride_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getRideDetails",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ride_state",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "rider",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "driver",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "initial_distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "initial_time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "final_distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "final_time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type",
+				"type": "string"
+			},
+			{
+				"internalType": "address[]",
+				"name": "eligibleDrivers",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "is_driver_processing",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "is_rider_processing",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "initial_distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "initial_time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "boost_percent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address[]",
+				"name": "eligibleDrivers",
+				"type": "address[]"
+			}
+		],
+		"name": "requestRide",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "new_fare_contract_address",
+				"type": "address"
+			}
+		],
+		"name": "setFareContractAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]

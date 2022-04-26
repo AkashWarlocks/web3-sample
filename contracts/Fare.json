@@ -1,0 +1,830 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "fare_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Base_Fare",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "fare_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Estimated_Fare",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "cgst",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "sgst",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "rider_referrer_amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "driver_referrer_amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "driver_earnings",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "base_fare_without_tax",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "premium_fare_without_tax",
+				"type": "uint256"
+			}
+		],
+		"name": "Fare_Split_Details",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "final_fare",
+				"type": "uint256"
+			}
+		],
+		"name": "Final_Fare",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "boost_percent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "driver",
+				"type": "address"
+			}
+		],
+		"name": "addCounterQuote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance",
+				"type": "uint256"
+			}
+		],
+		"name": "baseFareCalculation",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "fare_after_tax",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "city",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "minimum_distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance_buffer",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time_buffer",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "cgst",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "sgst",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Fare.TAX",
+				"name": "tax_parameters",
+				"type": "tuple"
+			},
+			{
+				"internalType": "bool",
+				"name": "set_car_parameters",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "city_car_type",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "car_type_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "minimum_fare",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time_multiplier",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance_multiplier",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type_name",
+				"type": "string"
+			}
+		],
+		"name": "getCityCarTypeParameters",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_city_code",
+				"type": "string"
+			}
+		],
+		"name": "getCityParameter",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "minimum_distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance_buffer",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cgst",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sgst",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "mileage",
+				"type": "uint256"
+			}
+		],
+		"name": "getEstimatedFare",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getRideFare",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getRideSplitDetails",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "ride_fare",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "base_fare",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "boost_percent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "chosen_mileage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "estimated_fare",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "final_fare",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "cgst",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "sgst",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rider_referrer_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "driver_referrer_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "driver_earnings",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "base_fare_without_tax",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "premium_fare_without_tax",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Fare.FARE_SPLIT",
+				"name": "fare_split_details",
+				"type": "tuple"
+			},
+			{
+				"internalType": "bool",
+				"name": "buffer_check",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "minimum_fare",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time_multiplier",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance_multiplier",
+				"type": "uint256"
+			}
+		],
+		"name": "setCityCarTyeParameters",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "minimum_distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance_buffer",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time_buffer",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cgst",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sgst",
+				"type": "uint256"
+			}
+		],
+		"name": "setCityParameter",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "new_ride_contract_address",
+				"type": "address"
+			}
+		],
+		"name": "setRideContractAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "distance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "boost_percent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "city_code",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "car_type",
+				"type": "string"
+			}
+		],
+		"name": "storeBaseFare",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "driver",
+				"type": "address"
+			}
+		],
+		"name": "storeEstimatedFare",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ride_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "final_fare",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cgst",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sgst",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "rider_referrer_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "driver_referrer_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "driver_earnings",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "base_fare_without_tax",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "premium_fare_without_tax",
+				"type": "uint256"
+			}
+		],
+		"name": "storeFinalFare",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "new_referrral_percentage",
+				"type": "uint256"
+			}
+		],
+		"name": "updateReferralPercentage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
